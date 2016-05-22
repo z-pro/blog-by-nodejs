@@ -1,0 +1,23 @@
+extends ../layout
+append css
+  link(rel='stylesheet', href='/css/admin.css')
+block main
+ .container.login
+      form.form-signin(method='post',action='/admin/login')
+        h2.form-signin-heading 登录
+        .input-group
+          span.input-group-addon.glyphicon.glyphicon-user
+          input.form-control(type='text', name='uname', placeholder='请输入您的用户名', aria-describedby='basic-addon1')
+        .input-group
+          span.input-group-addon.glyphicon.glyphicon-lock
+          input.form-control(type='password', name='pwd', placeholder='请输入您的密码', aria-describedby='basic-addon1')
+        // <label for="inputEmail" class="sr-only">用户名:</label>
+        // <input type="email" id="inputEmail" class="form-control" placeholder="请输入您的用户名" required autofocus>
+        // <label for="inputPassword" class="sr-only">密码:</label>
+        // <input type="password" id="inputPassword" class="form-control" placeholder="请输入您的密码" required>
+        .checkbox
+          label
+            input(type='checkbox', value='remember-me')
+            |  记住我
+        button.btn.btn-lg.btn-primary.btn-block.button.button-3d.button-primary.button-rounded(type='submit') 登录
+    // /container

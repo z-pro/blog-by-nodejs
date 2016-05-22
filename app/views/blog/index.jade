@@ -1,0 +1,58 @@
+extends layout
+
+
+block content
+  .blog-post
+            h2.blog-post-title Nodejs blog post
+
+
+            each post in posts
+              h3 
+               a(href="/view/#{post._id}") #{post.title}
+              p #{truncate(post.content,66)}
+              p 
+               span 分类：#{post.category.title}
+               span 作者：#{post.author.name}
+               span 时间：#{moment(post.createOn).format("MM-dd-YYYY")}
+
+
+            // /.pre.
+
+            
+
+
+            nav.pull-right
+              ul.pagination
+                li
+                  a(href="#") &laquo;
+                li.active
+                  a(href="#") 1
+                li
+                  a(href="#") 2
+                li
+                  a(href="#") 3
+                li
+                  a(href="#") &raquo;
+          
+          // /.blog-post
+              nav
+                ul.pager
+                  li
+                    a(href='#') Previous
+                  li
+                    a(href='#') Next
+
+
+
+
+
+  //h1= title
+
+  //div.pannel.pannel-default hhhwwww
+  //a.btn.btn-info(href="www.ssnjz.com") ssnjz
+  //p Welcome to #{title}
+
+
+
+
+  script //$(function(){ alert(1)})

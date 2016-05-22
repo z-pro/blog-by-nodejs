@@ -1,0 +1,69 @@
+extends ../layout
+append css
+  link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.min.css')
+  link(rel='stylesheet', href='/css/admin.css')
+block main
+  block header
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') 管理系统
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/admin/loginout') 
+                i.fa.fa-power-off
+                | &nbsp;注销
+            
+            li
+              a(href='#') 
+                i.fa.fa-question-circle-o
+                | &nbsp;帮助
+          form.navbar-form.navbar-right
+            input.form-control(type='text', placeholder='搜索...')
+  block left
+    .container-fluid
+      .row
+        .col-sm-3.col-md-2.sidebar
+          ul.nav.nav-sidebar
+            li.active
+              a(href='#')
+                i.fa.fa-files-o
+                | &nbsp;文章管理 
+                span.sr-only (current)
+            li
+              a(href='/admin/post') 
+                i.fa.fa-files-o
+                | &nbsp;文章列表
+            li
+              a(href='/admin/category') 
+                i.fa.fa-bars
+                | &nbsp;分类列表
+          ul.nav.nav-sidebar
+            li.active
+              a(href='#') 
+                i.fa.fa-user
+                | &nbsp;用户管理
+            li
+              a(href='/admin/user') 
+                i.fa.fa-users
+                | &nbsp;用户列表
+            li
+              a(href='') 
+                i.fa.fa-files-o
+                | &nbsp;用户权限
+            li
+              a(href='') 
+                i.fa.fa-files-o
+                | &nbsp;部门列表
+         
+  block content
+
+
+  
+    

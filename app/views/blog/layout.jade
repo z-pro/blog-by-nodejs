@@ -1,0 +1,101 @@
+extends ../layout
+append css
+  link(rel='stylesheet', href='/css/blog.css')
+block main
+  block header
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') 全栈博客
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            if pageName=="/" || pageName==="/post"
+             li.active
+               a(href='/') 首页
+            else 
+             li
+              a(href='/') 首页
+            if pageName=="/about"
+             li.active
+               a(href='/about') 关于
+            else 
+             li
+              a(href='/about') 关于
+            if pageName=="/contact"
+             li.active
+               a(href='/contact') 联系
+            else 
+             li
+              a(href='/contact') 联系
+            
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                | 操作 
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='/chat') 聊天室
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+                li.divider(role='separator')
+                li.dropdown-header Nav header
+                li
+                  a(href='#') Separated link
+                li
+                  a(href='#') One more separated link
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#') Chen Wenhao
+            li.active
+              a(href='#')
+                | JasonZeng 
+                span.sr-only (current)
+  .container(style="margin-top:55px;")
+      .row
+        .col-sm-8.blog-main
+          block content
+        // /.blog-main
+        .col-sm-3.col-sm-offset-1.blog-sidebar
+          .sidebar-module.sidebar-module-inset
+            h4 最热博文
+            p
+              | Etiam porta 
+              em sem malesuada magna
+              |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+          .sidebar-module
+            h4 博文分类
+            ol.list-unstyled
+
+              each category in categorys
+                 li
+                   a(href='/post/#{category.id}') #{category.title}
+              
+          .sidebar-module
+            h4 友情链接
+            ol.list-unstyled
+              li
+                a(href='#') GitHub
+              li
+                a(href='#') Twitter
+              li
+                a(href='#') Facebookok
+
+
+
+  block footer
+    footer.blog-footer
+      p
+        | Blog for learning 
+        a(href='http://www.cnblogs.com/jasonzeng') jasonzeng
+        |  by 
+        a(href='https://github.com/z-pro') @zpro
+        | .
+      p
+        a(href='#') Back to top

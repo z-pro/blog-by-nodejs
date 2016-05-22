@@ -1,0 +1,49 @@
+extends ../layout
+
+
+block content
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2.sub-header 分类列表
+          .btn-group(role='group', aria-label='...')
+            button.btn.btn-default#btn-add(type='button') 新增
+            button.btn.btn-default(type='button') 删除
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th #
+                  th 类型名
+                  th 时间
+                  th 操作
+              tbody
+                each category in categorys
+                  tr
+                    td #{category._id}
+                    td #{category.title}
+                    td #{moment(category.createOn).format("YYYY-MM-DD HH:mm:ss")}
+                    td 
+                      a.btn.btn-danger(href="/admin/category/delete/#{category._id}", onclick="return window.confirm('确定删除嘛？')") 删除
+                      button.btn.btn-info#btn-edit 编辑
+                      button.btn.btn-success 查看
+                
+                
+
+                
+        #myModal.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h4.modal-title 新增分类
+              .modal-body
+                form.form-group(method="post",action="/admin/category/oper/0")
+                  label 类型名：
+                  input.form-control(type="text",name='txtTitle')
+                  input.btn.btn-primary.form-control(type='submit',value='确定',style='margin-top:10px') 
+              .modal-footer
+                
+
+block scripts
+  script.
+   $(function(){ $("#btn-add").click(function(){$('#myModal').modal()})})

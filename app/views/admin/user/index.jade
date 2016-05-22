@@ -1,0 +1,52 @@
+extends ../layout
+
+
+block content
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h2.sub-header 用户列表
+          .btn-group(role='group', aria-label='...')
+            button.btn.btn-default#btn-add(type='button') 新增
+            button.btn.btn-default(type='button') 删除
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th #
+                  th 用户名
+                  th 邮箱
+                  th 时间
+                  th 操作
+              tbody
+                each user in users
+                  tr
+                    td #{user._id}
+                    td #{user.name}
+                    td #{user.email}
+                    td #{moment(user.createOn).format("YYYY-MM-DD HH:mm:ss")}
+                    td 
+                      a.btn.btn-danger(href="/admin/user/delete/#{user._id}", onclick="return window.confirm('确定删除嘛？')") 删除
+                      button.btn.btn-info 编辑
+                      button.btn.btn-success 查看
+                
+                
+        #myModal.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h4.modal-title 新增用户
+              .modal-body
+                form.form-group(method="post",action="/admin/user/oper/0")
+                  label 用户名：
+                  input.form-control(type="text",name='txtName')
+                  label 邮箱：
+                  input.form-control(type="text",name='txtEmail')
+                  label 密码：
+                  input.form-control(type="text",name='txtPwd')
+                  input.btn.btn-primary.form-control(type='submit',value='确定',style='margin-top:10px') 
+              .modal-footer
+                
+
+block scripts
+  script $(function(){ $("#btn-add").click(function(){$('#myModal').modal()})})

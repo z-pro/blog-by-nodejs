@@ -1,0 +1,78 @@
+extends ../layout
+
+
+block content
+  
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          h1.page-header 主界面
+          .row.placeholders
+            .col-xs-6.col-sm-3.placeholder
+              img.img-responsive(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', width='200', height='200', alt='Generic placeholder thumbnail')
+              h4 Label
+              span.text-muted Something else
+            .col-xs-6.col-sm-3.placeholder
+              img.img-responsive(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', width='200', height='200', alt='Generic placeholder thumbnail')
+              h4 Label
+              span.text-muted Something else
+            .col-xs-6.col-sm-3.placeholder
+              img.img-responsive(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', width='200', height='200', alt='Generic placeholder thumbnail')
+              h4 Label
+              span.text-muted Something else
+            .col-xs-6.col-sm-3.placeholder
+              img.img-responsive(src='data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==', width='200', height='200', alt='Generic placeholder thumbnail')
+              h4 Label
+              span.text-muted Something else
+          h2.sub-header 文章列表
+          .btn-group(role='group', aria-label='...')
+            button.btn.btn-default#btn-add(type='button') 新增
+            button.btn.btn-default(type='button') 删除
+          .table-responsive
+            table.table.table-striped
+              thead
+                tr
+                  th #
+                  th 标题
+                  th 作者
+                  th 分类
+                  th 时间
+                  th 操作
+              tbody
+                each post in posts
+                  tr
+                    td #{post._id}
+                    td #{post.title}
+                    td #{post.author.name}
+                    td #{post.category.title}
+                    td #{moment(post.createOn).format("YYYY-MM-DD HH:mm:ss")}
+                    td 
+                      a.btn.btn-danger(href="/admin/post/delete/#{post._id}", onclick="return window.confirm('确定删除嘛？')") 删除
+                      button.btn.btn-info 编辑
+                      a.btn.btn-success(href='/view/#{post._id}',target='_blank') 查看
+                
+                
+        #myModal.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h4.modal-title 新增博文
+              .modal-body
+                form.form-group(method="post",action="/admin/post/oper/0")
+                  label 标题：
+                  input.form-control(type="text",name='txtTitle')
+                  label 分类：
+                  select.form-control(type="text",name='txtCategory')
+                    each category in categorys
+                      option(value="#{category._id}") #{category.title}
+                  label 内容：
+                  textarea.form-control(name='txtContent')
+                  label 是否发布：
+                  input.form-control(type="checkbox",name='isPublished')
+                  input.btn.btn-primary.form-control(type='submit',value='确定',style='margin-top:10px') 
+              .modal-footer
+                
+
+block scripts
+  script $(function(){ $("#btn-add").click(function(){$('#myModal').modal()})})         
+
